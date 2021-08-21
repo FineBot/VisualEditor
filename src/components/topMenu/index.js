@@ -57,7 +57,7 @@ export default function TopMenu(props) {
                         }
                     }
                 }}>Мобильная версия</IconButton>
-                <Typography style={{marginRight:"20px"}} variant={"h4"}>{icon.type.name}</Typography>
+                <Typography style={{marginRight:"20px"}} variant={"h4"}>{icon.type.displayName}</Typography>
                 <Switch text={"Темная тема"} onChange={(e) => {
                     isDark=e
                     darkTheme(e)
