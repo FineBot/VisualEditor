@@ -1,0 +1,17 @@
+version: "3"
+
+
+services:
+
+client:
+ 
+    build: .
+      restart: always
+      container_name: client
+    
+      
+      command: bash -c "git clone git@github.com:user/project.git"
+      
+
+    ports:
+      - 3000:3000
