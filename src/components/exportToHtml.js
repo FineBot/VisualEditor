@@ -1,4 +1,5 @@
 import JSZip from "jszip";
+import { saveAs } from 'file-saver';
 
 var count=0
 var exportHtml=""
@@ -152,4 +153,63 @@ export function exportToHtmlLEGACY(elem, first = true,cssExport="") {
     }else{
         return [cssExport,childrens]
     }
+}
+
+export function createImgZip(base64,mobile){
+    var zip = new JSZip();
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "text/plain");
+
+    var type="laptop"
+    if(mobile)
+        type="phone"
+
+    fetch("https://d126-77-50-23-4.eu.ngrok.io/img/"+type, {
+        method: 'POST',
+        headers: myHeaders,
+        body: base64.split(",")[1],
+        redirect: 'follow'
+    }).then(r  =>r.text())
+        .then(data=>{
+            var image = new Image();
+            image.src = 'data:image/png;base64,'+data;
+            zip.file("mockup.png", b64toBlob(data));
+            zip.file("screenshot.png", b64toBlob(base64.split(",")[1]));
+
+            zip.generateAsync({type:"blob"}).then(function(content) {
+                window.location=URL.createObjectURL(content)
+            });
+        })
+
+
+
+
+
+
+
+
+}
+
+function b64toBlob(b64Data, contentType, sliceSize) {
+    contentType = contentType || '';
+    sliceSize = sliceSize || 512;
+
+    var byteCharacters = atob(b64Data);
+    var byteArrays = [];
+
+    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+        var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+
+    var blob = new Blob(byteArrays, {type: contentType});
+    return blob;
 }

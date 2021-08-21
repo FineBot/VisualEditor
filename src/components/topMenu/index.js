@@ -1,4 +1,4 @@
-import exportToHtml from "../exportToHtml";
+import exportToHtml, {createImgZip} from "../exportToHtml";
 import {
     Button,
     Checkbox,
@@ -76,12 +76,18 @@ export default function TopMenu(props) {
                                 document.getElementById("clearArea").style.backgroundColor=colors(theme).mainColor
                                 htmlToImage.toBlob(document.getElementById('clearArea'))
                                     .then(function (blob) {
-                                        window.saveAs(blob, 'photo.png');
+                                        // window.saveAs(blob, 'photo.png');
+                                        var reader = new FileReader();
+                                        reader.readAsDataURL(blob);
+                                        reader.onloadend = function() {
+                                            let base64data = reader.result;
+                                            createImgZip(base64data,mobile)
+                                        }
                                         document.getElementById("clearArea").style.backgroundColor="transparent"
                                     });
-                            }}>Создать картинку</Button>
+                            }}>Создать mockup</Button>
 
-                    <Button style={{marginRight: "15px", marginLeft: "15px"}} size={"small"} onClick={()=>exportToHtml(darkTheme,isDark)}>Скачать архив</Button>
+                    <Button style={{marginRight: "15px", marginLeft: "15px"}} size={"small"} onClick={()=>exportToHtml(darkTheme,isDark)}>Рендер в HTML</Button>
 
             </div>
         </div>
