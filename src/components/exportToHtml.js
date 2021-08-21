@@ -16,7 +16,6 @@ export default function exportToHtml(darkTheme,isDark) {
 <html>
   <head>
     <title>title</title>
-    
     <link rel="stylesheet" type="text/css" href="./style.css">
   </head>
   <body>

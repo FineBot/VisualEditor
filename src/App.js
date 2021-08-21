@@ -1,4 +1,5 @@
 import './App.css';
+import '@design-system-rt/rtk-fonts';
 import {useEffect, useState} from "react";
 import React, {Component} from "react";
 import {Button, ThemeProvider} from "@design-system-rt/rtk-ui-kit";
@@ -8,11 +9,29 @@ import FloatingMenu from "./components/floatingMenu"
 import * as ReactDOMServer from "react-dom/server";
 import exportToHtml from "./components/exportToHtml";
 import TopMenu from "./components/topMenu";
-import '@design-system-rt/rtk-fonts';
 
 var viewFloatingMenuStatus = false
 var isArea = false
-var theme = "dark"
+var theme = "light"
+let positions = {}
+
+
+const checkTop=function (d,ball,top){
+    let screenWidth=(document.getElementById("clearArea").offsetWidth)
+    let paddings=32
+    if(screenWidth<400 && screenWidth>350)
+        paddings=16
+
+    return (d.clientHeight + d.offsetTop - ball.clientHeight-paddings > top && top > d.offsetTop+paddings)
+}
+const checkLeft=function (d,ball,left){
+    let screenWidth=(document.getElementById("clearArea").offsetWidth)
+    let paddings=32
+    if(screenWidth<400 && screenWidth>350)
+        paddings=16
+
+    return (left > d.offsetLeft+paddings && left < d.offsetLeft + d.clientWidth - ball.clientWidth-paddings)
+}
 
 function onDragStart(e, card) {
 
@@ -27,9 +46,30 @@ function onDragEnd(e, card, editCards, cardList, state) {
 
         setTimeout(() => {
             document.getElementById((cardList.length).toString() + 'elem').style.position = "absolute"
-            var k = document.getElementsByClassName("react-transform-element")[0].style.transform.match(/(\d*\.*\d*px)/gm)
-            var left = Math.ceil((Math.abs(k[0].replace("px", "")) + e.clientX - 320) / currentScale - e.target.offsetWidth / 4)
-            var top = Math.ceil((Math.abs(k[1].replace("px", "")) + e.clientY - 50) / currentScale - e.target.offsetHeight / 2)
+            var k = document.getElementsByClassName("react-transform-element")[0].style.transform.match(/(\-*\d*\.*\d*px)/gm)
+            var leftBuff=-Number((k[0].replace("px", "")))
+            var topBuff=-Number((k[1].replace("px", "")))
+
+
+
+
+
+            var left = (leftBuff/currentScale+Math.ceil(( + e.clientX - 320) / currentScale) - e.target.offsetWidth / 4)
+            var top = (topBuff/currentScale+Math.ceil(( + e.clientY - 50) / currentScale) - e.target.offsetHeight / 2)
+
+
+
+            var d = document.getElementById("areas")
+            var ball = document.getElementById((cardList.length).toString() + 'elem')
+
+            if(checkTop(d,ball,top) && checkLeft(d,ball,left)){
+
+            }else{
+                // alert("Нельзя добавить элемент за пределы области.")
+                left=0
+                top=0
+            }
+
             document.getElementById((cardList.length).toString() + 'elem').style.left = (left + left % state.m).toString() + "px"
             document.getElementById((cardList.length).toString() + 'elem').style.top = ((top + top % state.m)).toString() + "px"
 
@@ -39,11 +79,12 @@ function onDragEnd(e, card, editCards, cardList, state) {
 
 function onDragOver(e, card, isArea1 = false) {
     isArea = isArea1
-    e.target.style.borderColor = "blue"
+    // e.target.style.borderColor = "blue"
+
 }
 
 function onDragLeave(e, card) {
-    e.target.style.borderColor = "cornflowerblue"
+    // e.target.style.borderColor = "cornflowerblue"
 }
 
 var currentScale = 1
@@ -52,25 +93,33 @@ var activeElement = 0
 function App() {
 
     window.onload = () => {
-        document.getElementsByClassName("react-transform-component")[0].style.width = (window.innerWidth - 330).toString() + "px"
+        document.getElementsByClassName("react-transform-component")[0].style.width = (window.innerWidth - 320).toString() + "px"
         document.getElementsByClassName("react-transform-component")[0].style.height = (window.innerHeight - 50).toString() + "px"
-
     }
 
     const [areaElements, editArea] = useState([])
 
 
     const [state, setState] = useState({
-        w: 3000,
-        h: 3000,
+        w: 1920,
+        h: 1080,
         m: 4,
         enable: true,
         showFloatingMenuAnimation: false,
-        theme: "light"
+        viewFloatingMenuStatus:false,
+        theme: "light",
     })
 
+
+
+
+
+
+
     const editState = (list) => {
-        setState({...state, ...list})
+        setState(prevState => {
+            return {...prevState, ...list};
+        });
     }
 
     const [elProps, setElProps] = useState({})
@@ -79,28 +128,52 @@ function App() {
         setState({...state, ...list})
     }
 
+
+
     const showMenu = (show) => {
         if (show) {
+
             if (!viewFloatingMenuStatus) {
                 viewFloatingMenuStatus = true
                 console.log("show")
-                editState({showFloatingMenuAnimation: true})
+                editState({showFloatingMenuAnimation: true,theme:theme,viewFloatingMenuStatus:true})
             }
         } else {
             if (viewFloatingMenuStatus) {
                 console.log("hide")
-                editState({showFloatingMenuAnimation: false,theme})
+                editState({showFloatingMenuAnimation: false,theme:theme,viewFloatingMenuStatus:true})
                 setTimeout(() => {
                     viewFloatingMenuStatus = false
+                    editState({viewFloatingMenuStatus:false,theme,showFloatingMenuAnimation:false})
                 }, 250)
             }
         }
 
     }
 
+    const deleteElement=()=>{
+        showMenu(false)
+
+        setTimeout(()=>{
+            editState({enable: true})
+            editArea(areaElements.map((f, ii) => {
+                if (activeElement === ii) {
+                } else {
+                    return f
+                }
+            }))
+        },250)
+    }
+
+
     return (
         <ThemeProvider themeName={state.theme} id="provider">
-            <TopMenu darkTheme={(e = true) => {
+            <TopMenu
+                state={state}
+                editState={editState}
+                areaElements={areaElements}
+
+                darkTheme={(e = true) => {
                 if (e) {
                     editState({theme: "dark"})
                     theme = "dark"
@@ -123,12 +196,15 @@ function App() {
                     state={state}/>
                 <Field
                     theme={state.theme}
-
+                    positions={positions}
+                    editPositions={(i,data)=>positions[i]=data}
                     onDragOver={onDragOver}
                     state={state}
                     areaElements={areaElements}
                     editState={editState}
+                    checkLeft={checkLeft}
                     editArea={editArea}
+                    checkTop={checkTop}
                     onDragLeave={onDragLeave}
                     currentScale={currentScale}
                     editCurrentScale={(e) => currentScale = e}
@@ -136,9 +212,17 @@ function App() {
                     editElProps={editElProps}
                     elProps={elProps}
                     setElement={(e) => activeElement = e}/>
-                {viewFloatingMenuStatus ? (<FloatingMenu
+                {state.viewFloatingMenuStatus ? (<FloatingMenu
                     theme={state.theme}
-
+                    deleteElement={deleteElement}
+                    editPositions={(data)=>{
+                        positions=data
+                        console.log(positions)
+                    }}
+                    positions={positions}
+                    editStateForUpdate={function (){
+                        editState({showFloatingMenuAnimation:true})
+                    }}
                     show={state.showFloatingMenuAnimation} elemId={activeElement}
                     areaElements={areaElements}
                     editArea={editArea}/>) : (null)}

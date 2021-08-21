@@ -1,12 +1,29 @@
 .parent {
     justify-content: start;
     align-items: center;
-    width: 320px;
-    border-right: 2px solid cornflowerblue;
-    padding: 5px;
+    width: 319px;
     display: flex;
     flex-direction: column;
+    border-right: #797E8B 1px solid;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .element{
-    margin: 5px;
+}
+
+.group{
+    color:#D3D4DB;
+
+    height: 40px;
+    width: 319px;
+    font-size: 12px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.groupText{
+    padding-left: 40px;
+    padding-right: 20px;
+
 }

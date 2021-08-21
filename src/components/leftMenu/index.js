@@ -2,24 +2,38 @@ import {elements} from "../data/elements";
 import styles from './leftMenu.module.css'
 import React from "react";
 import colors from "../data/colors";
-import {Button} from "@design-system-rt/rtk-ui-kit";
+import Group from "./group";
+import { Button} from "@design-system-rt/rtk-ui-kit";
 
 export default function LeftMenu(props) {
     var {onDragOver, onDragLeave, onDragStart, onDragEnd, editArea, areaElements, state} = props
 
-    return (
-        <div draggable={true} className={styles.parent} style={{backgroundColor:colors(props.theme).mainColor}}>
+    var groups=[]
+    for (var i in elements){
+        groups.push(i)
+    }
 
-            {elements.map(e => {
+
+    return (
+        <div draggable={true} className={styles.parent} style={{backgroundColor:"#3D4555",height:window.innerHeight-50}}>
+            {groups.map((e,idGroup) => {
 
                 return (
                     <div
                         className={styles.element}
-                        draggable={true}
-                        onDragStart={(k) => onDragStart(k, e)}
-                        onDragEnd={(k) => onDragEnd(k, e, editArea, areaElements, state)}
+                        draggable={false}
+
                     >
-                        {React.createElement(e.element, e.initProps)}
+                        <Group name={e}
+                               idGroup={idGroup}
+                               editArea={editArea}
+                               areaElements={areaElements}
+                               state={state}
+                               onDragStarte={props.onDragStart}
+                               onDragEnde={props.onDragEnd}
+
+                        />
+
                     </div>
                 )
             })}

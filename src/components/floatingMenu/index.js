@@ -1,44 +1,79 @@
 import styles from './floatingMenu.module.css'
 import React, {useEffect, useState} from "react";
-import dataFunc from '../data/props'
-import {Button} from "@design-system-rt/rtk-ui-kit";
+import {dataConst} from '../data/props'
+import $ from 'jquery'
+import {
+    Button,
+    InputAmount,
+    InputText,
+    RadioButton,
+    RadioGroup, Select,
+    ThemeProvider,
+    Typography
+} from "@design-system-rt/rtk-ui-kit";
 import {elements} from "../data/elements";
+import Input from "@design-system-rt/rtk-ui-kit/components/Input/Input";
+import ArrayText from "./arrayText";
+import {propsSwitch, stylesSwitch} from "./switch";
 
-export default function Index(props){
-    const {areaElements,editArea} = props
+export default function Index(props) {
+    const {areaElements, editArea} = props
 
-    var element=areaElements[props.elemId].props.initName
-    var keys=[]
-    var data=dataFunc()
-    for (let key in data[element]){
+
+    if (areaElements[props.elemId] == undefined)
+        return null
+
+    var element = areaElements[props.elemId].props.initName
+
+
+    var keys = []
+    var data = dataConst()
+    for (let key in data[element].props) {
         keys.push(key)
     }
+    var keysStyle = []
+    for (let key in data[element].style) {
+        keysStyle.push(key)
+    }
 
-    return(
-        <div className={styles.parent} style={{height:window.innerHeight-50}}>
-            <div
-                hide={(!props.show).toString()} className={styles.children}>
-                {keys.map((e,i)=>{
+    return (
+        <ThemeProvider themeName={"dark"}>
+            <div className={styles.parent} style={{height: window.innerHeight - 50}}>
+                <div
 
-                    return (
-                        <div style={{padding:"5px"}}>
-                            <b style={{fontSize:"20px"}}>{e}</b>
-                            <div style={{paddingLeft:"15px"}}>{data[element][e].map((i)=>{
-                                return(<div><p><input name="dzen" type="radio" value={i} title={i} onClick={()=>{
-                                    var buff = areaElements
-                                    var b=Object.assign({},buff[props.elemId].props)
-                                    b[e]=i
-                                    buff[props.elemId]=React.createElement(elements[buff[props.elemId].props.propsNumber].element, b)
-                                    editArea(buff.map(e => {
-                                        return e
-                                    }))
-                                }}/>{i}</p></div>)
-                            })}</div>
-                        </div>
-                    )
-                })}
+                    hide={(!props.show).toString()} className={styles.children}>
+
+                    <div style={{display: "flex", justifyContent: "center", marginTop: "15px", marginBottom: "5px"}}
+                         onClick={() => {
+                             var buff = props.positions
+                             for (var i in buff){
+                                if(i.toString()=== props.elemId.toString()){
+                                    buff[i]={x:-20,y:-20,x1:-20,y1:-20}
+                                }
+                             }
+                             props.editPositions(buff)
+                             props.deleteElement()
+                         }}>
+                        <div className={styles.button}>Удалить элемент</div>
+                    </div>
+                    <div style={{display: "flex", justifyContent: "center"}}>
+                        <div style={{
+                            width: "280px",
+                            height: "2px",
+                            backgroundColor: "gray",
+                            borderRadius: "10px",
+                            marginTop: "5px"
+                        }}></div>
+                    </div>
+                    {keys.map((e, i) => {
+                        return(propsSwitch(e,element,data,areaElements,props.elemId,i,editArea,props.editStateForUpdate))
+                    })}
+                    <div style={{height: "10px"}}/>
+                    {keysStyle.map((e, i) => {
+                        return(stylesSwitch(e,element,data,areaElements,props.elemId,i,editArea,props.editStateForUpdate))
+                    })}
+                </div>
             </div>
-        </div>
+        </ThemeProvider>
     )
-
 }

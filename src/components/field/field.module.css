@@ -9,30 +9,26 @@
 
 .area {
     margin: auto;
-    border: 2px solid cornflowerblue;
-    padding: 5px;
-    background: linear-gradient(
-            lightblue, transparent 1px
-    ),
-    linear-gradient(
-            90deg,
-            lightblue, transparent 1px
-    );
-    background-size: 4px 4px;
-    background-position: center center;
-    border: 2px solid lightblue;
+    overflow: hidden;
+
+    -webkit-box-shadow: 0px 0px 39px -8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 39px -8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 39px -8px rgba(0, 0, 0, 0.3);
+
+    background-size: 40px 40px;
+    border: 1px #B5B7C0 solid;
+    background-position: center;
+
 }
 
 .area[theme="dark"] {
-    background: linear-gradient(
-            #3D4555, transparent 1px
-    ),
-    linear-gradient(
-            90deg,
-            #3D4555, transparent 1px
-    );
-    background-size: 4px 4px;
+    -webkit-box-shadow: 0px 0px 39px -8px rgba(255, 255, 255, 0.3);
+    -moz-box-shadow: 0px 0px 39px -8px rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 39px -8px rgba(255, 255, 255, 0.3);
+
+    background-size: 40px 40px;
     background-position: center center;
+    border: 1px #3D4555 solid;
     background-color: #1D2533;
 }
 

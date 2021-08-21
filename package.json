@@ -3,21 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@design-system-rt/rtk-fonts": "^3.0.0",
+    "@design-system-rt/rtk-fonts": "^4.0.0",
     "@design-system-rt/rtk-ui-kit": "^4.2.4",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "file-saver": "^2.0.5",
+    "html-to-image": "^1.7.0",
+    "html-to-react": "^1.4.5",
+    "jquery": "^3.6.0",
     "jszip": "^3.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "react-zoom-pan-pinch": "^1.6.1",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -3,13 +3,17 @@
     z-index: 9999999;
     display: flex;
     justify-content: flex-end;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y:auto;
     right: 0px;
+
 }
 
 .children{
-    width:200px;
-    background-color: wheat;
+    border-left: #797E8B 1px solid;
+
+    width:320px;
+    background-color: #3D4555;
 
     animation: show ease;
     animation-duration: 250ms;
@@ -38,4 +42,19 @@
     100%{
         margin-right: 0%;
     }
+}
+
+.button {
+    color: white;
+    width: 140px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 4px;
+    cursor: pointer;
+
+    border: 2px solid #f44336;
+    transition: all 200ms;
+}
+.button:hover{
+    background-color: #1D2533;
 }
