@@ -1,7 +1,7 @@
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 import styles from './field.module.css'
 import React, {useEffect} from "react";
-import {Button} from "@design-system-rt/rtk-ui-kit";
+import {Button, ThemeProvider, Typography} from "@design-system-rt/rtk-ui-kit";
 import colors from "../data/colors";
 import {checkIndent} from "../checkPosition";
 
@@ -25,6 +25,15 @@ export default function Field(props) {
         <div className={styles.parent}
              theme={props.theme}
              id={"FieldComponent"}>
+            {state.viewElemPrompt?(
+                <div style={{position:"absolute",alignItems:"center",zIndex:999,height:"30px",justifyContent:"center",display:"flex",backgroundColor:"#2F9AFF"}}>
+                    <ThemeProvider themeName={"dark"}>
+                        <div style={{}}>
+                            <Typography style={{width:window.innerWidth-320,textAlign:"center"}} variant={"h4"}>Для отображения настроек нажмите правой кнопкой мыши по элементу</Typography>
+                        </div>
+                    </ThemeProvider>
+                </div>
+            ):(null)}
             <TransformWrapper
                 defaultScale={currentScale}
                 wheel={{step: 7}}

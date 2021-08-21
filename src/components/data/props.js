@@ -105,10 +105,36 @@ export function dataConst() {
     if (screenWidth < 400 && screenWidth > 350)
         paddings = 16
 
+
+    let maxHeight=screenWidth - paddings * 2
+    if(maxHeight>600)
+        maxHeight=600
+
     return (
         {
             "Typography": {
                 'element': Typography,
+                'style': {
+                    'width': {
+                    'type': 'picker',
+                    'title': 'Ширина',
+                    'values': [
+                        '100px',
+                        '200px',
+                        '300px',
+                        (maxHeight).toString()+'px',
+                    ]
+                },
+                'textAlign': {
+                    'type': 'picker',
+                    'title': 'Ширина (px)',
+                    'values': [
+                        'left',
+                        'center',
+                        'right'
+                    ]
+                }
+                },
                 "props": {
                     "children": children,
                     "color": {
@@ -222,12 +248,13 @@ export function dataConst() {
                 'style': {
                     'width': {
                         'type': 'picker',
-                        'title': 'Ширина (px)',
+                        'title': 'Ширина',
                         'values': [
-                            screenWidth - paddings * 2 - 1,
-                            '100',
-                            '200',
-                            '300',
+                            '100px',
+                            '200px',
+                            '300px',
+                            (maxHeight).toString()+'px',
+
                         ]
                     }
                 }

@@ -165,8 +165,8 @@ export function propsSwitch(e, element, data, areaElements, elemId, i, editArea,
 
             return (
                 <div style={{paddingTop: "10px", paddingLeft: "25px", backgroundColor: "#3D4555"}}>
-                    <Typography style={{
-                        fontSize: "12px",
+                    <Typography variant={"h3"} style={{
+
                         paddingBottom: "15px"
                     }}>{params['title']}</Typography>
                     <RadioGroup style={{
@@ -330,10 +330,10 @@ export function stylesSwitch(e, element, data, areaElements, elemId, i, editArea
                         var st = b.style
                         if (st == undefined) {
                             st = {}
-                            st[e] = text.toString().replaceAll(" ", "") + 'px'
+                            st[e] = text.toString().replaceAll(" ", "")
                         } else {
 
-                            st[e] = text.target.value.toString() + 'px'
+                            st[e] = text.target.value.toString()
 
                         }
 
@@ -349,7 +349,11 @@ export function stylesSwitch(e, element, data, areaElements, elemId, i, editArea
             break;
         case 'picker':
 
-            var value = areaElements[elemId].props[e]
+            let value = undefined
+            try{
+                value=areaElements[elemId].props.style[e]
+            }catch (e){}
+
 
             if (value == undefined) {
                 switch (e) {
@@ -363,8 +367,10 @@ export function stylesSwitch(e, element, data, areaElements, elemId, i, editArea
             }
             return (
                 <div style={{paddingTop: "10px", paddingLeft: "25px"}}>
-                    <Typography style={{
-                        fontSize: "12px",
+                    <Typography
+                        variant={"h3"}
+                        style={{
+
                         paddingBottom: "15px"
                     }}>{params['title']}</Typography>
                     <RadioGroup style={{paddingLeft: "15px"}}
@@ -376,9 +382,9 @@ export function stylesSwitch(e, element, data, areaElements, elemId, i, editArea
                                     var st = b.style
                                     if (st == undefined) {
                                         st = {}
-                                        st[e] = x.toString().replaceAll(" ", "") + 'px'
+                                        st[e] = x.toString().replaceAll(" ", "")
                                     } else {
-                                        st[e] = x.toString() + 'px'
+                                        st[e] = x.toString()
                                     }
                                     b.style = st
                                     buff[elemId] = React.createElement(data[element].element, b)

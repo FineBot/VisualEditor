@@ -2,7 +2,7 @@ import './App.css';
 import '@design-system-rt/rtk-fonts';
 import {useEffect, useState} from "react";
 import React, {Component} from "react";
-import {Button, ThemeProvider} from "@design-system-rt/rtk-ui-kit";
+import {Button, ThemeProvider, Typography} from "@design-system-rt/rtk-ui-kit";
 import Field from './components/field'
 import LeftMenu from "./components/leftMenu";
 import FloatingMenu from "./components/floatingMenu"
@@ -22,7 +22,7 @@ const checkTop=function (d,ball,top){
     if(screenWidth<400 && screenWidth>350)
         paddings=16
 
-    return (d.clientHeight + d.offsetTop - ball.clientHeight-paddings > top && top > d.offsetTop+paddings)
+    return (d.clientHeight + d.offsetTop - ball.clientHeight-paddings+4 > top && top > d.offsetTop+paddings)
 }
 const checkLeft=function (d,ball,left){
     let screenWidth=(document.getElementById("clearArea").offsetWidth)
@@ -30,14 +30,14 @@ const checkLeft=function (d,ball,left){
     if(screenWidth<400 && screenWidth>350)
         paddings=16
 
-    return (left > d.offsetLeft+paddings && left < d.offsetLeft + d.clientWidth - ball.clientWidth-paddings)
+    return (left > d.offsetLeft+paddings && left < d.offsetLeft + d.clientWidth - ball.clientWidth-paddings+4)
 }
 
 function onDragStart(e, card) {
 
 }
 
-function onDragEnd(e, card, editCards, cardList, state) {
+function onDragEnd(e, card, editCards, cardList, state, editState) {
     if (isArea) {
         var f = cardList.concat(React.createElement(card.element, card.initProps))
         editCards(f.map(e => {
@@ -72,6 +72,19 @@ function onDragEnd(e, card, editCards, cardList, state) {
 
             document.getElementById((cardList.length).toString() + 'elem').style.left = (left + left % state.m).toString() + "px"
             document.getElementById((cardList.length).toString() + 'elem').style.top = ((top + top % state.m)).toString() + "px"
+
+            let buff = localStorage.getItem("viewElemPromptWas")
+            if(!state.viewElemPromptWas && buff==null){
+                editState({viewElemPromptWas:true,viewElemPrompt:true})
+
+                setTimeout(()=>{
+                    editState({viewElemPrompt:false})
+                    localStorage.setItem("viewElemPromptWas","true")
+
+                },7000)
+            }
+
+
 
         }, 10)
     }
@@ -108,6 +121,8 @@ function App() {
         showFloatingMenuAnimation: false,
         viewFloatingMenuStatus:false,
         theme: "light",
+        viewElemPrompt:false,
+        viewElemPromptWas:false,
     })
 
 
@@ -168,10 +183,13 @@ function App() {
 
     return (
         <ThemeProvider themeName={state.theme} id="provider">
+
             <TopMenu
                 state={state}
                 editState={editState}
+                editArea={editArea}
                 areaElements={areaElements}
+                clearPositions={()=>positions={}}
 
                 darkTheme={(e = true) => {
                 if (e) {
@@ -190,7 +208,9 @@ function App() {
                     onDragOver={onDragOver}
                     onDragLeave={onDragLeave}
                     onDragStart={onDragStart}
-                    onDragEnd={onDragEnd}
+                    onDragEnd={(k,e,editArea,areaElements,state)=>{
+                        onDragEnd(k,e,editArea,areaElements,state,editState)
+                    }}
                     editArea={editArea}
                     areaElements={areaElements}
                     state={state}/>

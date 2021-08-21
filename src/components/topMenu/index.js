@@ -41,16 +41,11 @@ export default function TopMenu(props) {
                         setIcon(<Mobile/>)
                         props.editState({w:1920,h:1080})
                     }else{
-                        let stop = false
-                        for (let j in props.areaElements){
-                            if(props.areaElements[j]!=undefined){
-                                stop=true
-                                break
-                            }
-                        }
-                        if(stop){
-                            alert("Переход на мобильную версию недоступен, пока у Вас на экране есть хотя бы один компонент.\n\nПожалуйста, удалите все компоненты, либо перезагрузите страницу, чтобы редактировать мобильную версию.")
-                        }else{
+
+
+                        if(window.confirm("При переходе на другую версию отображения все элементы будут удалены.\n\nПродолжить?")){
+                            props.clearPositions()
+                            props.editArea([])
                             mobile=true
                             setIcon(<Desktop/>)
                             props.editState({w:375,h:812})
