@@ -33,8 +33,8 @@ npm start
 ```
 
 ### Разработчики
-**Баикин Кирилл *frontend*:** [t.me/baikinkirill](t.me/baikinkirill)
+**Баикин Кирилл *frontend*:** [t.me/baikinkirill](https://t.me/baikinkirill)
 
-**Суринов Роман *designer*:** [t.me/TheHarald](t.me/TheHarald)
+**Суринов Роман *designer*:** [t.me/TheHarald](https://t.me/TheHarald)
 
-**Парамошкин Егор *backend*:**
+**Парамошкин Егор *backend*:** [t.me/Redbird127](https://t.me/Redbird127)
