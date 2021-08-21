@@ -1,17 +1,29 @@
+# Файл docker-compose должен начинаться с тега версии.
+# Мы используем "3" так как это - самая свежая версия на момент написания этого кода.
+
 version: "3"
+
 
 
 services:
 
-client:
+
+
+  server:
  
-    build: .
-      restart: always
-      container_name: client
+
     
-      
-      command: bash -c "git clone git@github.com:user/project.git"
-      
+    container_name: 'newApi'
+    restart: 'always'
+
+    build: ./
+
+   
+
+    command: npm start
+
+  
 
     ports:
       - 3000:3000
+      
