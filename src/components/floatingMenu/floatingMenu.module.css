@@ -1,0 +1,41 @@
+.parent{
+    position: absolute;
+    z-index: 9999999;
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    right: 0px;
+}
+
+.children{
+    width:200px;
+    background-color: wheat;
+
+    animation: show ease;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+
+.children[hide="true"]{
+    animation: hide ease;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hide {
+    0%{
+        margin-right: 0%;
+    }
+    100%{
+        margin-right: -100%;
+    }
+}
+
+@keyframes show {
+    0%{
+        margin-right: -100%;
+    }
+    100%{
+        margin-right: 0%;
+    }
+}

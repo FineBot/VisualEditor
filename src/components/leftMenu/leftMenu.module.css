@@ -1,0 +1,12 @@
+.parent {
+    justify-content: start;
+    align-items: center;
+    width: 320px;
+    border-right: 2px solid cornflowerblue;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.element{
+    margin: 5px;
+}

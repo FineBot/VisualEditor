@@ -1,0 +1,41 @@
+.parent {
+    padding: 0px;
+}
+.parent[theme="dark"] {
+    padding: 0px;
+    background-color: #1D2533;
+
+}
+
+.area {
+    margin: auto;
+    border: 2px solid cornflowerblue;
+    padding: 5px;
+    background: linear-gradient(
+            lightblue, transparent 1px
+    ),
+    linear-gradient(
+            90deg,
+            lightblue, transparent 1px
+    );
+    background-size: 4px 4px;
+    background-position: center center;
+    border: 2px solid lightblue;
+}
+
+.area[theme="dark"] {
+    background: linear-gradient(
+            #3D4555, transparent 1px
+    ),
+    linear-gradient(
+            90deg,
+            #3D4555, transparent 1px
+    );
+    background-size: 4px 4px;
+    background-position: center center;
+    background-color: #1D2533;
+}
+
+.childrenList {
+    cursor: grab;
+}
