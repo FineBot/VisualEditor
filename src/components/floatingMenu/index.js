@@ -63,15 +63,21 @@ export default function Index(props) {
                             backgroundColor: "gray",
                             borderRadius: "10px",
                             marginTop: "5px"
+
                         }}></div>
                     </div>
-                    {keys.map((e, i) => {
-                        return(propsSwitch(e,element,data,areaElements,props.elemId,i,editArea,props.editStateForUpdate))
-                    })}
-                    <div style={{height: "10px"}}/>
+                    <div style={{backgroundColor: "#3D4555"
+                    }}>
+                        {keys.map((e, i) => {
+                            return(propsSwitch(e,element,data,areaElements,props.elemId,i,editArea,props.editStateForUpdate))
+                        })}
+                    </div>
+                    <div style={{height: "10px",backgroundColor: "#3D4555"}}/>
+                    <div style={{backgroundColor: "#3D4555"}}>
                     {keysStyle.map((e, i) => {
                         return(stylesSwitch(e,element,data,areaElements,props.elemId,i,editArea,props.editStateForUpdate))
                     })}
+                    </div>
                 </div>
             </div>
         </ThemeProvider>

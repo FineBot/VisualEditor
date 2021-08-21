@@ -54,7 +54,7 @@ function onDragEnd(e, card, editCards, cardList, state, editState) {
 
 
 
-            var left = (leftBuff/currentScale+Math.ceil(( + e.clientX - 320) / currentScale) - e.target.offsetWidth / 4)
+            var left = (leftBuff/currentScale+Math.ceil(( + e.clientX - 250) / currentScale) - e.target.offsetWidth / 4)
             var top = (topBuff/currentScale+Math.ceil(( + e.clientY - 64) / currentScale) - e.target.offsetHeight / 2)
 
 
@@ -106,7 +106,8 @@ var activeElement = 0
 function App() {
 
     window.onload = () => {
-        document.getElementsByClassName("react-transform-component")[0].style.width = (window.innerWidth - 320).toString() + "px"
+
+        document.getElementsByClassName("react-transform-component")[0].style.width = (window.innerWidth - 250).toString() + "px"
         document.getElementsByClassName("react-transform-component")[0].style.height = (window.innerHeight - 64).toString() + "px"
     }
 

@@ -29,7 +29,7 @@ export default function Field(props) {
                 <div style={{position:"absolute",alignItems:"center",zIndex:999,height:"30px",justifyContent:"center",display:"flex",backgroundColor:"#2F9AFF"}}>
                     <ThemeProvider themeName={"dark"}>
                         <div style={{}}>
-                            <Typography style={{width:window.innerWidth-320,textAlign:"center"}} variant={"h4"}>Для отображения настроек нажмите правой кнопкой мыши по элементу</Typography>
+                            <Typography style={{width:window.innerWidth-250,textAlign:"center"}} variant={"h4"}>Для отображения настроек нажмите правой кнопкой мыши по элементу</Typography>
                         </div>
                     </ThemeProvider>
                 </div>

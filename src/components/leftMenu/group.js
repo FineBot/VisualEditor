@@ -37,7 +37,7 @@ export default function Group(props) {
                                 style={{
                                     display:"none",
                                 position: "absolute",
-                                left: "330px",
+                                left: "260px",
                                 zIndex: 999999,
                                 backgroundColor: "#3D4555",
                                 padding: "8px",
@@ -55,6 +55,9 @@ export default function Group(props) {
                             }}
                                         onMouseEnter={()=>{
                                             document.getElementById(`elem${idObj}in${props.idGroup}`).style.display="block"
+                                            let doc = document.getElementById(`elem${idObj}in${props.idGroup}`)
+                                            if(doc.offsetTop+doc.offsetHeight>=window.innerHeight)
+                                                doc.style.top="75px"
                                         }}
                                         onMouseLeave={()=>{
                                             document.getElementById(`elem${idObj}in${props.idGroup}`).style.display="none"

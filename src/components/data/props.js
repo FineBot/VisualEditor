@@ -1,18 +1,34 @@
 import {
     AddLarge,
     Attachment,
+    AttachmentLink,
     Button,
     Chat,
     Checkbox,
     Chip,
+    Dislike,
     FunctionButton,
     IconButton,
-    InputAmount, InputEmail, InputText, LinkNative, MenuKebab,
+    Image,
+    InputAmount,
+    InputEmail,
+    InputText,
+    Like,
+    Link,
+    LinkNative,
+    Lock,
+    Mail,
+    MenuKebab,
+    Microphone,
+    Notification,
+    NotificationNew, Photo,
     RadioButton,
     Select,
     Stepper,
-    Switch, TabsClassicGroup,
-    TagItem, Typography
+    Switch,
+    TabsClassicGroup,
+    TagItem, Translation,
+    Typography
 } from "@design-system-rt/rtk-ui-kit";
 import {useEffect} from "react";
 
@@ -69,20 +85,20 @@ export const icons = {
     'linknative': <LinkNative/>,
     'attachment': <Attachment/>,
     'menukebab': <MenuKebab/>,
-    'Chat': <Chat/>,
-    'menu5Kebab': <MenuKebab/>,
-    'menu6Kebab': <MenuKebab/>,
-    'men7uKe8bab': <MenuKebab/>,
-    'menu4Keb7ab': <MenuKebab/>,
-    'menu3Kebab': <MenuKebab/>,
-    'men5uKebab': <MenuKebab/>,
-    'men1uKe2bab': <MenuKebab/>,
-    'menuKe2bab': <MenuKebab/>,
-    'me2nuKebab': <MenuKebab/>,
-    'menu2Kebab': <MenuKebab/>,
-    'menu3Ke2bab': <MenuKebab/>,
-    'menu4Kebab': <MenuKebab/>,
-    'men7uKebab': <MenuKebab/>,
+    'attachmentlink': <AttachmentLink/>,
+    'chat': <Chat/>,
+    'dislike': <Dislike/>,
+    'Image': <Image/>,
+    'like': <Like/>,
+    'link': <Link/>,
+    'lock': <Lock/>,
+    'mail': <Mail/>,
+    'microphone': <Microphone/>,
+    'notification': <Notification/>,
+    'notificationNew': <NotificationNew/>,
+    'photo': <Photo/>,
+    'translation': <Translation/>,
+
 }
 
 let icon = {
@@ -235,6 +251,18 @@ export function dataConst() {
                     'children': {
                         'type': 'tabsConstructor'
                     }
+                },
+                'style':{
+                    'width': {
+                        'type': 'picker',
+                        'title': 'Ширина',
+                        'values': [
+                            '100px',
+                            '200px',
+                            '300px',
+                            (maxHeight).toString()+'px',
+                        ]
+                    },
                 }
             },
 

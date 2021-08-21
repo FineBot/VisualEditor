@@ -1,7 +1,7 @@
 .parent {
     justify-content: start;
     align-items: center;
-    width: 319px;
+    width: 249px;
     display: flex;
     flex-direction: column;
     border-right: #797E8B 1px solid;
@@ -15,7 +15,7 @@
     color:#D3D4DB;
 
     height: 40px;
-    width: 319px;
+    width: 249px;
     font-size: 12px;
     display: flex;
     align-content: center;
