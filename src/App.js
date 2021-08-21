@@ -6,7 +6,9 @@ import Field from './components/field'
 import LeftMenu from "./components/leftMenu";
 import FloatingMenu from "./components/floatingMenu"
 import * as ReactDOMServer from "react-dom/server";
+import exportToHtml from "./components/exportToHtml";
 import TopMenu from "./components/topMenu";
+import '@design-system-rt/rtk-fonts';
 
 var viewFloatingMenuStatus = false
 var isArea = false
