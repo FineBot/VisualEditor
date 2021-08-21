@@ -18,9 +18,11 @@ export default function Group(props) {
 
 
             <div className={styles.group}>
-                <div className={styles.groupText}>
-                    {props.name}
-                </div>
+               <ThemeProvider themeName={"dark"}>
+                   <Typography variant={"h3"} className={styles.groupText}>
+                       {props.name}
+                   </Typography>
+               </ThemeProvider>
 
             </div>
             <div>
@@ -69,9 +71,7 @@ export default function Group(props) {
                     )
                 })}
             </div>
-            <div style={{display: "flex", justifyContent: "center"}}>
-                <div style={{width: "250px", height: "2px", backgroundColor: "gray", borderRadius: "10px"}}></div>
-            </div>
+           
         </div>
     )
 }
