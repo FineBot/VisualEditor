@@ -78,7 +78,7 @@ export const elements = ({
         },
         "Chip": {
             element: Chip,
-            initProps: {initName: "Chip", amount: 13, children: "Карта", color: "primary2", shape: "rounded"}
+            initProps: {initName: "Chip", amount: 13, children: "Карта", color: "primary2", shape: "rounded",view:"primary"}
         },
         "RadioButton": {
             element: RadioButton,
@@ -86,7 +86,7 @@ export const elements = ({
         },
         "Stepper": {element: Stepper, initProps: {initName: "Stepper", color: "primary2", size: "medium"}},
         "Switch": {element: Switch, initProps: {initName: "Switch", text: "Switch"}},
-        "TagItem": {element: TagItem, initProps: {initName: 'TagItem', children: "Тэг",}},
+        "TagItem": {element: TagItem, initProps: {initName: 'TagItem', children: "Тэг",view:'primary'}},
         "Tabs": {
             element: TabsClassicGroup, initProps: {
 

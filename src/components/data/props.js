@@ -126,24 +126,27 @@ export function dataConst() {
     if(maxHeight>600)
         maxHeight=600
 
+
+    const width={
+        'type': 'picker',
+        'title': 'Ширина',
+        'values': [
+            '100px',
+            '200px',
+            '300px',
+            (maxHeight).toString()+'px',
+        ]
+    }
+
     return (
         {
             "Typography": {
                 'element': Typography,
                 'style': {
-                    'width': {
-                    'type': 'picker',
-                    'title': 'Ширина',
-                    'values': [
-                        '100px',
-                        '200px',
-                        '300px',
-                        (maxHeight).toString()+'px',
-                    ]
-                },
+                    'width': width,
                 'textAlign': {
                     'type': 'picker',
-                    'title': 'Ширина (px)',
+                    'title': 'Выравнивание текста',
                     'values': [
                         'left',
                         'center',
@@ -289,6 +292,9 @@ export function dataConst() {
             },
             'Select': {
                 'element': Select,
+                'style':{
+                  'width':width
+                },
                 'props': {
                     'label': {
                         'type': 'text',
@@ -322,7 +328,14 @@ export function dataConst() {
                     },
                     'children': children,
                     'color': color,
-                    'shape': shape
+                    'shape': shape,
+                    'view':{
+                        'title':'Вид',
+                        'type':'picker',
+                        'values':[
+                            'primary','secondary'
+                        ]
+                    },
 
 
                 }
@@ -358,7 +371,20 @@ export function dataConst() {
             'Stepper': {
                 element: Stepper,
                 'props': {
+                    'leftIcon':{
+                        'type': 'select',
+                        'title': 'Левая иконка',
+                        'generate': true,
+                        'values': icons
+                    },
+                    'rightIcon':{
+                        'type': 'select',
+                        'title': 'Правая иконка',
+                        'generate': true,
+                        'values': icons
+                    },
                     'color': color,
+
                     'size': {
                         'type': 'picker',
                         'title': 'Размер',
@@ -374,6 +400,24 @@ export function dataConst() {
                 element: TagItem,
                 'props': {
                     'children': children,
+                    'maxSymbols':{
+                        'type': 'select',
+                        'title': 'Ограничение символов',
+                        'values': [
+                            '4',
+                            '6',
+                            '12',
+                            'Не задано'
+                        ]
+                    },
+                    'view':{
+                        'type': 'picker',
+                        'title': 'Вид',
+                        'values': [
+                            'primary',
+                            'secondary'
+                        ]
+                    },
                     'size': {
                         'type': 'picker',
                         'title': 'Размер',
@@ -387,6 +431,9 @@ export function dataConst() {
             },
             'InputAmount': {
                 element: InputAmount,
+                'style':{
+                    'width':width
+                },
                 'props': {
                     'label': {
                         'type': 'amount',
@@ -402,12 +449,29 @@ export function dataConst() {
                 'props': {
                     'children': children,
                     'icon': icon,
-                    'color': color
+                    'color': color,
+                    'iconPosition':{
+                        'title':'Позиция иконки',
+                        'type':'picker',
+                        'values':[
+                            'left','right'
+                        ]
+                    },
+                    'view':{
+                        'title':'Вид',
+                        'type':'picker',
+                        'values':[
+                            'primary','secondary','tertiary'
+                        ]
+                    },
 
                 }
             },
             'InputEmail': {
                 element: InputEmail,
+                'style':{
+                    'width':width
+                },
                 'props': {
                     'label': {
                         'type': 'text',
@@ -428,6 +492,9 @@ export function dataConst() {
                     'icon': icon,
                     'color': color,
                     'shape': shape
+                },
+                'style':{
+                    'width':width
                 }
             },
 
