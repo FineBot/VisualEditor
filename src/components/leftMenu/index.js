@@ -15,7 +15,7 @@ export default function LeftMenu(props) {
 
 
     return (
-        <div draggable={true} className={styles.parent} style={{backgroundColor:"#3D4555",height:window.innerHeight-50}}>
+        <div draggable={true} className={styles.parent} style={{backgroundColor:"#3D4555",height:window.innerHeight-64}}>
             {groups.map((e,idGroup) => {
 
                 return (

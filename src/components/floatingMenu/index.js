@@ -38,7 +38,7 @@ export default function Index(props) {
 
     return (
         <ThemeProvider themeName={"dark"}>
-            <div className={styles.parent} style={{height: window.innerHeight - 50}}>
+            <div className={styles.parent} style={{height: window.innerHeight - 64}}>
                 <div
 
                     hide={(!props.show).toString()} className={styles.children}>
