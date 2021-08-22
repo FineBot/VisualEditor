@@ -17,7 +17,7 @@
 - Docker, React, Spring, Java
 
 ### Демо:
-[https://rtdesign.finebot.site](https://rtdesign.finebot.site)
+[http://194.58.92.14:3000](http://194.58.92.14:3000)
 
 ### Среда запуска:
 - Развертывание сервиса протестировано под Windows 10.
