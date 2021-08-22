@@ -14,7 +14,7 @@ export default function Group(props) {
         objects.push(i)
     }
     return (
-        <div style={{backgroundColor: "#3D4555"}}>
+        <div draggable={true} style={{backgroundColor: "#3D4555"}}>
 
 
             <div className={styles.group}>
@@ -31,8 +31,10 @@ export default function Group(props) {
 
                     return (
 
-                        <div>
+                        <div
+                            draggable={true}>
                             <div
+                                draggable={true}
                                 id={`elem${idObj}in${props.idGroup}`}
                                 style={{
                                     display:"none",
@@ -47,7 +49,9 @@ export default function Group(props) {
                                     {React.createElement(e.element, e.initProps)}
                                 </ThemeProvider>
                             </div>
-                            <Typography style={{
+                            <Typography
+                                draggable={true}
+                                style={{
                                 paddingBottom: "10px",
                                 paddingLeft: "60px",
                                 color: "#D3D4DB",

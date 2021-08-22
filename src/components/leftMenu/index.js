@@ -21,7 +21,7 @@ export default function LeftMenu(props) {
                 return (
                     <div
                         className={styles.element}
-                        draggable={false}
+                        draggable={true}
 
                     >
                         <Group name={e}
@@ -29,6 +29,7 @@ export default function LeftMenu(props) {
                                editArea={editArea}
                                areaElements={areaElements}
                                state={state}
+                               draggable={true}
                                onDragStarte={props.onDragStart}
                                onDragEnde={props.onDragEnd}
 
