@@ -164,7 +164,7 @@ export function createImgZip(base64,mobile){
     if(mobile)
         type="phone"
 
-    fetch("http://194.58.92.14:1841/img/"+type, {
+    fetch("https://rtback.finebot.site/img/"+type, {
         method: 'POST',
         headers: myHeaders,
         body: base64.split(",")[1],
