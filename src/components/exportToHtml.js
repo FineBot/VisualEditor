@@ -164,7 +164,7 @@ export function createImgZip(base64,mobile){
     if(mobile)
         type="phone"
 
-    fetch("https://f08e-77-50-23-4.eu.ngrok.io/img/"+type, {
+    fetch("http://82.146.61.131:8080/img/"+type, {
         method: 'POST',
         headers: myHeaders,
         body: base64.split(",")[1],
