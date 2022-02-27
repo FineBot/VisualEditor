@@ -76,13 +76,20 @@ export default function TopMenu(props) {
                                 document.getElementById("clearArea").style.backgroundColor=colors(theme).mainColor
                                 htmlToImage.toBlob(document.getElementById('clearArea'))
                                     .then(function (blob) {
+                                        window.saveAs(blob, 'photo.png');
+                                        // createImgZip(buff.toDataURL('image/png'),mobile)
+                                        return
+                                        // createImgZip(buff.toDataURL(),mobile)
                                         // window.saveAs(blob, 'photo.png');
-                                        var reader = new FileReader();
-                                        reader.readAsDataURL(blob);
-                                        reader.onloadend = function() {
-                                            let base64data = reader.result;
-                                            createImgZip(base64data,mobile)
-                                        }
+                                        // var reader = new FileReader();
+                                        // reader.readAsDataURL(blob);
+                                        //
+                                        //
+                                        //
+                                        // reader.onloadend = function() {
+                                        //     let base64data = reader.result;
+                                        //     createImgZip(base64data,mobile)
+                                        // }
                                         document.getElementById("clearArea").style.backgroundColor="transparent"
                                     });
                             }}>Создать mockup</Button>
@@ -95,3 +102,4 @@ export default function TopMenu(props) {
 
     )
 }
+

@@ -105,6 +105,8 @@ var activeElement = 0
 
 function App() {
 
+
+
     window.onload = () => {
 
         document.getElementsByClassName("react-transform-component")[0].style.width = (window.innerWidth - 250).toString() + "px"

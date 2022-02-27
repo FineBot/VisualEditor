@@ -6,6 +6,7 @@ var exportHtml=""
 
 
 export default function exportToHtml(darkTheme,isDark) {
+
     var c1;
     var c1Dark;
     var c2;
@@ -17,6 +18,17 @@ export default function exportToHtml(darkTheme,isDark) {
 <html>
   <head>
     <title>title</title>
+    <style>
+    @font-face {
+    font-family: 'Rostelecom Basis';
+    src: url('https://finebot.site/static/fonts/RostelecomBasis-Medium.woff2') format('woff2'),
+        url('https://finebot.site/static/fonts/RostelecomBasis-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+</style>
+    <link rel="preload" href="https://finebot.site/static/fonts/RostelecomBasis-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" type="text/css" href="./style.css">
   </head>
   <body>
@@ -32,6 +44,17 @@ export default function exportToHtml(darkTheme,isDark) {
 <html>
   <head>
     <title>title</title>
+    <style>
+    @font-face {
+    font-family: 'Rostelecom Basis';
+    src: url('https://finebot.site/static/fonts/RostelecomBasis-Medium.woff2') format('woff2'),
+        url('https://finebot.site/static/fonts/RostelecomBasis-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+</style>
+    <link rel="preload" href="https://finebot.site/static/fonts/RostelecomBasis-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" type="text/css" href="./style.css">
   </head>
   <body>
@@ -51,6 +74,17 @@ export default function exportToHtml(darkTheme,isDark) {
 <html>
   <head>
     <title>title</title>
+    <style>
+    @font-face {
+    font-family: 'Rostelecom Basis';
+    src: url('https://finebot.site/static/fonts/RostelecomBasis-Medium.woff2') format('woff2'),
+        url('https://finebot.site/static/fonts/RostelecomBasis-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+</style>
+    <link rel="preload" href="https://finebot.site/static/fonts/RostelecomBasis-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" type="text/css" href="./style.css">
   </head>
   <body>
@@ -66,6 +100,17 @@ export default function exportToHtml(darkTheme,isDark) {
 <html>
   <head>
     <title>title</title>
+    <style>
+    @font-face {
+    font-family: 'Rostelecom Basis';
+    src: url('https://finebot.site/static/fonts/RostelecomBasis-Medium.woff2') format('woff2'),
+        url('https://finebot.site/static/fonts/RostelecomBasis-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+</style>
+    <link rel="preload" href="https://finebot.site/static/fonts/RostelecomBasis-Medium.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" type="text/css" href="./style.css">
   </head>
   <body>
@@ -164,7 +209,7 @@ export function createImgZip(base64,mobile){
     if(mobile)
         type="phone"
 
-    fetch("http://82.146.61.131:8080/img/"+type, {
+    fetch("http://194.58.92.14:1599/img/"+type, {
         method: 'POST',
         headers: myHeaders,
         body: base64.split(",")[1],
@@ -213,3 +258,4 @@ function b64toBlob(b64Data, contentType, sliceSize) {
     var blob = new Blob(byteArrays, {type: contentType});
     return blob;
 }
+
